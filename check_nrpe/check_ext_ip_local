@@ -1,0 +1,26 @@
+#!/bin/bash
+if [ -z $1 ]
+then
+	echo "IP Publica necesaria"
+	exit 2
+elif [ -z $2 ]
+then
+	echo "IP Local necesaria"
+	exit 2
+fi
+
+#Find out what the external IP address is. 
+ACTUAL=$(wget --bind-address $2 -q -O - ipinfo.io/ip)
+
+#What do we expect the external IP address to be?
+EXPECTED="$1"
+
+if [ $ACTUAL == $EXPECTED ]
+then
+	echo "OK - La IP publica no ha cambiado"
+	exit 0
+else
+	echo "CRITICAL - La IP externa ha cambiado a: $ACTUAL"
+	exit 2
+fi
+exit 0

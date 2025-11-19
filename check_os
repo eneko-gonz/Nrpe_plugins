@@ -1,0 +1,10 @@
+******
+**OS**
+******
+
+#!/bin/bash
+
+strversion=`cat /etc/*os-release`
+echo ${strversion%}
+
+exit 0

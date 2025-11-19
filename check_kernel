@@ -1,0 +1,11 @@
+**********
+**Kernel**
+**********
+
+#!/bin/bash
+
+strversion=`cat /proc/version | awk '{print $3,$9}'`
+
+echo "Kernel Version - (" ${strversion%')'}
+
+exit 0
